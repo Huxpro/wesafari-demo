@@ -1,0 +1,36 @@
+{
+  "name": "wesafari",
+  "version": "0.0.1",
+  "description": "demo app",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cordova-src": "cp -r src cordova/wesafari/;cd cordova/wesafari;rm -rf www;mv src www",
+    "cordova-dist": "cp -r dist cordova/wesafari/;cd cordova/wesafari;rm -rf www;mv dist www",
+    "cordova-emu": "cd cordova/wesafari; cordova emulate ios",
+    "cordova-device": "cd cordova/wesafari; cordova run --device"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Huxpro/wesafari.git"
+  },
+  "keywords": [
+    "wesafari"
+  ],
+  "author": "Hux",
+  "bugs": {
+    "url": "https://github.com/Huxpro/wesafari/issues"
+  },
+  "homepage": "https://github.com/Huxpro/wesafari",
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.1.0",
+    "gulp-postcss": "^5.1.8",
+    "gulp-sass": "^2.0.1"
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "reqwest": "^1.1.6"
+  }
+}
