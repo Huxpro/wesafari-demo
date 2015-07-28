@@ -97,6 +97,7 @@ require([
             var self = this;
             var router = Router({
                 '/': this.reRender,
+                '/reset': this.onReset,
                 '/schedule': this.setState.bind(this, {currentTabView: 0}),
                 '/camera': this.takePhoto,
                 '/cinema': this.setState.bind(this, {currentTabView: 2}),
@@ -137,6 +138,21 @@ require([
                 '2': 'cinema'
             }
             location.hash = _tabMap[_index];
+        },
+        onReset: function(){
+            console.log("hello");
+            var _store = [
+                "res/1.jpg",
+                "res/2.jpg",
+                "res/3.jpg",
+                "res/4.jpg"
+            ]
+
+            window.Store.save(_store);
+            this.setState({
+                store: _store
+            })
+
         },
         onBackBtnClick: function(){
             window.history.back(1);

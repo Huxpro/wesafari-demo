@@ -8,14 +8,6 @@ define(['store'], function(){
     	var appdir = cordova.file.dataDirectory;	// return Application/<UUID>/Library/NoCloud
     	var documentdir = cordova.file.dataDirectory;
 
-
-    	// DOM Elements.
-    	//var $album = document.getElementById('album');
-
-    	// Init Local Model
-    	var imgs = Store.fetch();
-    	console.log(imgs);
-
     	// common imgRender fn
     	function imgRender() {
     		location.hash = "/";
@@ -46,6 +38,8 @@ define(['store'], function(){
     		// nativeURL return /Application/<UUID>/Library/ ,which failed when <UUID> changed.
     		// so we can just use name which return "name.jpg"
     		var _name = fileEntry.name;
+
+        	var imgs = Store.fetch();
     		imgs.push(_name);
     		Store.save(imgs);
             imgRender();

@@ -106,9 +106,9 @@ footer{
     width:100%;
     /* if tab has text; or 44px */
     height: 47px;
-    background-color: #f9f9f9;
+    //background-color: #f9f9f9;
     display: flex;
-    box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
+    //box-shadow: 0px 0px 1px rgba(0,0,0,0.5);
     &>div {
         &:active{
             background-color: $color-active;
@@ -137,7 +137,6 @@ footer{
 
     }
     #btn-capture{
-        background: $color-theme;
         max-width: 80px;
         color: white;
         i {
@@ -145,6 +144,12 @@ footer{
         }
     }
     .FAB {
+        background: $color-theme;
+        color: white;
+        i {
+            color: white;
+        }
+
         position: absolute;
         bottom: 20px;
         right: 20px;
@@ -156,8 +161,14 @@ footer{
         height: 39px;
         padding: 10px;
         box-sizing: content-box;
-
+        &:active{
+            box-shadow: 0px 5px 10px 2px rgba(0, 0, 0, 0.2)
+        }
+        &:nth-of-type(2){
+            bottom: 94px;
+        }
     }
+
 }
 
 // Content View
@@ -167,6 +178,9 @@ footer{
     top: 44px; /* 44 + 26 */
     bottom: 0px;
     overflow-x:hidden;
+    // overflow-y: auto;
+    // overflow-y: scroll;
+    // -webkit-overflow-scrolling: touch;
 }
 .contentViewWithFooter{
     @extend .contentView;

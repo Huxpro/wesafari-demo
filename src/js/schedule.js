@@ -15,10 +15,21 @@ define(['React', 'IScroll', 'Router', 'navBar', 'util', 'commonTable'], function
 
         render: function render() {
 
+            var appdir;
             // both Cordova-ready and Store correct
-            if (this.props.store && window.cordova) {
-                var appdir = cordova.file.dataDirectory;
+            if (this.props.store) {
+                // default
+                if (window.cordova) {
+                    appdir = cordova.file.dataDirectory;
+                }
+
                 var _photos = this.props.store.map(function (img, i) {
+                    // came from local
+                    appdir = cordova.file.dataDirectory;
+                    if (img.match('res')) {
+                        appdir = '';
+                    }
+
                     return React.createElement(
                         'li',
                         { key: i },
@@ -35,7 +46,7 @@ define(['React', 'IScroll', 'Router', 'navBar', 'util', 'commonTable'], function
 
             return React.createElement(
                 'div',
-                { className: 'contentViewWithFooter sc-scroller ' + this.props.active
+                { className: 'contentView sc-scroller ' + this.props.active
                 },
                 React.createElement(
                     'ul',
@@ -59,6 +70,13 @@ define(['React', 'IScroll', 'Router', 'navBar', 'util', 'commonTable'], function
         },
         componentDidUpdate: function componentDidUpdate() {
             this.SCScroll.refresh();
+            var self = this;
+            setTimeout(function () {
+                self.SCScroll.refresh();
+            }, 100);
+            setTimeout(function () {
+                self.SCScroll.refresh();
+            }, 300);
         },
         initIScroll: function initIScroll() {
             //init IScroll
@@ -69,6 +87,7 @@ define(['React', 'IScroll', 'Router', 'navBar', 'util', 'commonTable'], function
                 tap: Util.iScrollClick(),
                 click: Util.iScrollClick()
             });
+            window.scroll = this.SCScroll;
         },
         onMovieItemClick: function onMovieItemClick(_index) {
             location.hash = '/movie-detail/' + _index;

@@ -14,18 +14,21 @@
 
             return (
                  <footer>
-                    <div className={ _current==0?"current":"" } onClick={_onClick.bind(null, 0)}>
-                        <i className={"icon-schedule "+ (_current==0?"current":"")}></i>镜头
-                    </div>
                     <div id={"btn-capture"}
                          className={"FAB"}
                          onClick={_onClick.bind(null, 1)}>
                         <i className={"icon-boxoffice current"}></i>拍照
                     </div>
-
+                    <div className={"btn-reset FAB"}
+                         onClick={this.onResetClick}>
+                        <i className={"icon-schedule current"}></i>重置
+                    </div>
                 </footer>
             )
-         }
+        },
+        onResetClick: function(){
+            location.hash = "reset"
+        }
      })
 
      return TabBar;

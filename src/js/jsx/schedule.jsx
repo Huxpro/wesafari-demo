@@ -25,10 +25,21 @@ define([
     var Schedule = React.createClass({
         render: function(){
 
+            var appdir;
             // both Cordova-ready and Store correct
-            if(this.props.store && window.cordova){
-                var appdir = cordova.file.dataDirectory;
+            if(this.props.store){
+                // default
+                if(window.cordova){
+                    appdir = cordova.file.dataDirectory;
+                }
+
                 var _photos = this.props.store.map(function(img, i){
+                    // came from local
+                    appdir = cordova.file.dataDirectory;
+                    if(img.match('res')){
+                        appdir = "";
+                    }
+
                     return (
                         <li key={i}>
                             <img src={appdir + img} />
@@ -43,7 +54,7 @@ define([
 
             return (
                 <div className=
-                    {"contentViewWithFooter sc-scroller " + this.props.active}
+                    {"contentView sc-scroller " + this.props.active}
                 >
                     <ul className="scroller">
                         <ul className="album">
@@ -64,6 +75,13 @@ define([
         },
         componentDidUpdate: function(){
             this.SCScroll.refresh();
+            var self = this;
+            setTimeout(function(){
+                self.SCScroll.refresh();
+            },100)
+            setTimeout(function(){
+                self.SCScroll.refresh();
+            },300)
         },
         initIScroll: function(){
             //init IScroll
@@ -74,6 +92,7 @@ define([
                 tap: Util.iScrollClick(),
                 click: Util.iScrollClick(),
             });
+            window.scroll = this.SCScroll;
         },
         onMovieItemClick: function(_index){
             location.hash = '/movie-detail/'+_index;
