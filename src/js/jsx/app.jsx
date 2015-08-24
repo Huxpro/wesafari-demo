@@ -100,17 +100,7 @@ require([
                 '/reset': this.onReset,
                 '/schedule': this.setState.bind(this, {currentTabView: 0}),
                 '/camera': this.takePhoto,
-                '/cinema': this.setState.bind(this, {currentTabView: 2}),
-                '/movie-detail': {
-                    '/:index': {
-                        on: function(index){
-                            self.setState({
-                                activatedMovie: index,
-                                isDetailOpen: true
-                            })
-                        }
-                    }
-                }
+                '/video': this.takeVideo
             });
             router.init('/');
         },
@@ -135,13 +125,16 @@ require([
             var _tabMap = {
                 '0': 'schedule',
                 '1': 'camera',
-                '2': 'cinema'
+                '2': 'video'
             }
             location.hash = _tabMap[_index];
         },
         onReset: function(){
             console.log("hello");
             var _store = [
+                "res/5.mp4",
+                "res/6.mp4",
+                "res/7.mp4",
                 "res/1.jpg",
                 "res/2.jpg",
                 "res/3.jpg",

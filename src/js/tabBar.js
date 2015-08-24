@@ -29,6 +29,14 @@ define(['React'], function (React) {
                 ),
                 React.createElement(
                     'div',
+                    { id: 'btn-video',
+                        className: 'FAB',
+                        onClick: _onClick.bind(null, 2) },
+                    React.createElement('i', { className: 'icon-boxoffice current' }),
+                    '录像'
+                ),
+                React.createElement(
+                    'div',
                     { className: 'btn-reset FAB',
                         onClick: this.onResetClick },
                     React.createElement('i', { className: 'icon-schedule current' }),
